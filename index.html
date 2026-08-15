@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Infinite Marquee Slider</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #111;
+        font-family: Arial, sans-serif;
+      }
+
+      /* =========================
+       MARQUEE (pure CSS, no Swiper)
+    ========================= */
+      .marquee-section {
+        width: 100%;
+        overflow: hidden;
+        padding: 45px 0;
+        background: #111;
+      }
+
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        will-change: transform;
+        animation: marquee-left 22s linear infinite;
+      }
+
+      .marquee-right .marquee-track {
+        animation-name: marquee-right;
+      }
+
+      /* pause on hover (optional, remove if not needed) */
+      .marquee-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes marquee-left {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          /* exactly -50% because content is duplicated once -> perfectly seamless loop */
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes marquee-right {
+        from {
+          transform: translateX(-50%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        padding: 0 35px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .marquee-item span {
+        font-size: clamp(40px, 6vw, 90px);
+        line-height: 1;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -3px;
+        color: #fff;
+      }
+
+      .marquee-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ff4d00;
+        flex-shrink: 0;
+      }
+
+      /* =========================
+       SECOND ROW
+    ========================= */
+
+      .marquee-section.orange {
+        background: #ff4d00;
+      }
+
+      .orange .marquee-item span {
+        color: #111;
+      }
+
+      .orange .marquee-dot {
+        background: #111;
+      }
+
+      /* =========================
+       MOBILE
+    ========================= */
+
+      @media (max-width: 768px) {
+        .marquee-section {
+          padding: 30px 0;
+        }
+
+        .marquee-item {
+          gap: 20px;
+          padding: 0 20px;
+        }
+
+        .marquee-item span {
+          font-size: 42px;
+          letter-spacing: -1.5px;
+        }
+
+        .marquee-dot {
+          width: 12px;
+          height: 12px;
+        }
+
+        .marquee-track {
+          animation-duration: 14s;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ==================================
+       INFINITE MARQUEE - LEFT TO RIGHT
+  =================================== -->
+
+    <section class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-item">
+          <span>Creative Design</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>Web Development</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>UI UX Design</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>Digital Experience</span>
+          <div class="marquee-dot"></div>
+        </div>
+
+        <!-- DUPLICATE SET (needed for seamless 50% loop, do not remove) -->
+        <div class="marquee-item">
+          <span>Creative Design</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>Web Development</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>UI UX Design</span>
+          <div class="marquee-dot"></div>
+        </div>
+        <div class="marquee-item">
+          <span>Digital Experience</span>
+          <div class="marquee-dot"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
